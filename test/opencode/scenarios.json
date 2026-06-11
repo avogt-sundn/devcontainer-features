@@ -1,0 +1,20 @@
+{
+  "scenarios": [
+    {
+      "name": "Default install",
+      "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+      "features": {
+        "opencode": {}
+      }
+    },
+    {
+      "name": "Custom model",
+      "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+      "features": {
+        "opencode": {
+          "model": "mlx/qwen3.6-27b-mlx"
+        }
+      }
+    }
+  ]
+}

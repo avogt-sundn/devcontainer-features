@@ -1,0 +1,14 @@
+{
+  "id": "opencode",
+  "version": "1.0.0",
+  "name": "OpenCode",
+  "description": "Copies OpenCode config to the user home directory at image build time.",
+  "options": {
+    "model": {
+      "type": "string",
+      "default": "mlx/gemma-4-26b-a4b-it-mlx",
+      "description": "Default model ID written into opencode config."
+    }
+  },
+  "installsAfter": []
+}

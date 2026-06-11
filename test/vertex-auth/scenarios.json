@@ -1,0 +1,11 @@
+{
+  "scenarios": [
+    {
+      "name": "Default install",
+      "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+      "features": {
+        "vertex-auth": {}
+      }
+    }
+  ]
+}
