@@ -12,7 +12,7 @@ Wiederverwendbare DevContainer-Features für Claude-Code-Projekte, veröffentlic
 | `quarkus` | Installiert Quarkus CLI und deaktiviert optional Quarkus-Telemetrie | `ghcr.io/avogt-sundn/devcontainer-features/quarkus:1` |
 | `springboot-cli` | Installiert Spring Boot CLI von Maven Central | `ghcr.io/avogt-sundn/devcontainer-features/springboot-cli:1` |
 | `devtools` | Installiert Diagnose-Tools: ping, dig, telnet, ab, httpie, file | `ghcr.io/avogt-sundn/devcontainer-features/devtools:1` |
-| `playwright` | Installiert Playwright-Systemabhängigkeiten und bakt Chromium ins Image | `ghcr.io/avogt-sundn/devcontainer-features/playwright:1` |
+| `playwright` | Installiert Playwright OS-Systemabhängigkeiten (kein Chromium — Download via `make pw-install`) | `ghcr.io/avogt-sundn/devcontainer-features/playwright:1` |
 | `claude-code` | Installiert Claude Code CLI global via npm | `ghcr.io/avogt-sundn/devcontainer-features/claude-code:1` |
 | `copilot-cli` | Installiert GitHub Copilot CLI global via npm | `ghcr.io/avogt-sundn/devcontainer-features/copilot-cli:1` |
 
