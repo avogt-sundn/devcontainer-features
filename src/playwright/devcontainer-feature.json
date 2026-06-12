@@ -4,7 +4,8 @@
   "name": "Playwright Chromium",
   "description": "Installs Playwright OS-level dependencies and test npm packages. Run `make pw-install` once to download Chromium (~180 MB).",
   "containerEnv": {
-    "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright"
+    "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright",
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
   },
   "postCreateCommand": "test -d ${containerWorkspaceFolder}/tests && (cd ${containerWorkspaceFolder}/tests && npm install) || echo 'No tests/ dir — skipping npm install'",
   "installsAfter": [
