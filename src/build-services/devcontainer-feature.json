@@ -1,0 +1,15 @@
+{
+  "id": "build-services",
+  "version": "1.0.0",
+  "name": "Build Services",
+  "description": "Starts local Maven (Reposilite) and npm (Verdaccio) mirror containers on the shared Docker network.",
+  "options": {
+    "network": {
+      "type": "string",
+      "default": "docker-default-network",
+      "description": "Docker network that the mirrors will join"
+    }
+  },
+  "postCreateCommand": "/usr/local/lib/devcontainer-features/build-services-start.sh",
+  "installsAfter": []
+}

@@ -1,0 +1,8 @@
+networks:
+  default:
+    name: docker-default-network
+    external: true
+
+include:
+  - maven-mirror/docker-compose.yaml
+  - npm-mirror/docker-compose.yaml
