@@ -24,4 +24,4 @@ jobs:
         run: npm install --location=global @devcontainers/cli
 
       - name: Test ${{ matrix.feature }}
-        run: devcontainer features test -f ${{ matrix.feature }} --skip-scenarios .
+        run: devcontainer features test -f ${{ matrix.feature }} --skip-scenarios --base-image mcr.microsoft.com/devcontainers/base:ubuntu .
