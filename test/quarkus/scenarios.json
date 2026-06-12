@@ -1,0 +1,20 @@
+{
+  "scenarios": [
+    {
+      "name": "Default install",
+      "image": "mcr.microsoft.com/devcontainers/java:dev-25-jdk-bookworm",
+      "features": {
+        "quarkus": {}
+      }
+    },
+    {
+      "name": "Telemetry enabled",
+      "image": "mcr.microsoft.com/devcontainers/java:dev-25-jdk-bookworm",
+      "features": {
+        "quarkus": {
+          "disableTelemetry": false
+        }
+      }
+    }
+  ]
+}

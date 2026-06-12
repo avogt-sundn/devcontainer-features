@@ -1,0 +1,25 @@
+{
+  "id": "build-mirrors",
+  "version": "1.0.0",
+  "name": "Build Mirrors",
+  "description": "Configures Maven and npm to use local Docker-network mirrors (Reposilite + Verdaccio).",
+  "options": {
+    "mavenMirrorUrl": {
+      "type": "string",
+      "default": "http://maven-mirror:8080/central",
+      "description": "URL of the Maven mirror for settings.xml"
+    },
+    "mavenMirrorId": {
+      "type": "string",
+      "default": "dockerized-mirror",
+      "description": "ID for the mirror entry in settings.xml"
+    },
+    "npmToken": {
+      "type": "string",
+      "default": "dummy-token",
+      "description": "Auth token for the npm registry (Verdaccio accepts any value)"
+    }
+  },
+  "postCreateCommand": "/usr/local/lib/devcontainer-features/build-mirrors-setup.sh",
+  "installsAfter": []
+}
