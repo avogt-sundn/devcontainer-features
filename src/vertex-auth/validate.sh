@@ -2,7 +2,12 @@
 
 set -e
 
-CREDENTIAL_FILE="${GOOGLE_APPLICATION_CREDENTIALS:-/home/vscode/.config/gcp/vertex-service-account.json}"
+CREDENTIAL_FILE="${GOOGLE_APPLICATION_CREDENTIALS:-}"
+
+if [ -z "$CREDENTIAL_FILE" ]; then
+	echo "[vertex-auth] GOOGLE_APPLICATION_CREDENTIALS not set — skipping validation."
+	exit 0
+fi
 
 if [ ! -r "$CREDENTIAL_FILE" ]; then
 	echo "[vertex-auth] Vertex credential file not found/readable: $CREDENTIAL_FILE" >&2
