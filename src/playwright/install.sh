@@ -2,8 +2,7 @@
 set -e
 
 # Install only OS-level system dependencies here (fast, no network downloads).
-# The Chromium binary itself is downloaded in postCreate-Playwright.sh so that
-# the ~230 MB fetch happens after the container starts with visible progress.
+# Chromium binary is NOT fetched here — run `make pw-install` once after container start.
 apt-get update && apt-get install -y --no-install-recommends \
     xvfb \
     libglib2.0-0 \
