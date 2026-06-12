@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-mkdir -p /home/vscode/.config/gcp
-chown -R vscode:vscode /home/vscode/.config/gcp
+mkdir -p "${_REMOTE_USER_HOME:-/home/vscode}/.config/gcp"
+chown -R "${_REMOTE_USER:-vscode}:${_REMOTE_USER:-vscode}" "${_REMOTE_USER_HOME:-/home/vscode}/.config/gcp"
 
 # Install the postCreate validation script at a fixed path in the image
 mkdir -p /usr/local/lib/devcontainer-features
