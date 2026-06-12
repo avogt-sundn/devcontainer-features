@@ -2,14 +2,14 @@
   "scenarios": [
     {
       "name": "Default install",
-      "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+      "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
       "features": {
         "opencode": {}
       }
     },
     {
       "name": "Custom model",
-      "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+      "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
       "features": {
         "opencode": {
           "model": "mlx/qwen3.6-27b-mlx"
