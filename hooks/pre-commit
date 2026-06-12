@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Block commits to src/<feature>/ unless the version in devcontainer-feature.json was bumped.
+
+changed_features=$(git diff --cached --name-only | grep '^src/' | cut -d/ -f2 | sort -u)
+
+fail=0
+for feature in $changed_features; do
+  manifest="src/$feature/devcontainer-feature.json"
+
+  staged=$(git show ":$manifest" 2>/dev/null | jq -r .version 2>/dev/null)
+  head=$(git show "HEAD:$manifest" 2>/dev/null | jq -r .version 2>/dev/null)
+
+  # New repo with no HEAD yet — allow
+  [ -z "$head" ] && continue
+
+  if [ "$staged" = "$head" ]; then
+    echo "ERROR: $feature changed but version is still $staged"
+    echo "       Run: make release FEATURE=$feature"
+    fail=1
+  fi
+done
+
+[ $fail -eq 0 ] || exit 1
