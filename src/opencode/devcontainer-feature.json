@@ -2,7 +2,7 @@
   "id": "opencode",
   "version": "1.0.0",
   "name": "OpenCode",
-  "description": "Copies OpenCode config to the user home directory at image build time.",
+  "description": "Installs the OpenCode CLI and copies its config to the user home directory at image build time.",
   "options": {
     "model": {
       "type": "string",

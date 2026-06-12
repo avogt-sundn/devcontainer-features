@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+npm install -g opencode-ai@latest
+
 FEATURE_DIR="$(dirname "$0")"
 TARGET="${_REMOTE_USER_HOME:-/home/vscode}/.config/opencode"
 
