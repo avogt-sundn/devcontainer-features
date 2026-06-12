@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
-VERSION="${VERSION:-1.58.2}"
-
+# Install only OS-level system dependencies here (fast, no network downloads).
+# The Chromium binary itself is downloaded in postCreate-Playwright.sh so that
+# the ~230 MB fetch happens after the container starts with visible progress.
 apt-get update && apt-get install -y --no-install-recommends \
     xvfb \
     libglib2.0-0 \
@@ -21,6 +22,5 @@ apt-get update && apt-get install -y --no-install-recommends \
     libcairo2 \
     && rm -rf /var/lib/apt/lists/*
 
-export PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
-npx --yes "playwright@${VERSION}" install chromium
+mkdir -p /ms-playwright
 chmod -R 777 /ms-playwright
