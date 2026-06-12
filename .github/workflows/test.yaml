@@ -15,7 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         feature:
-          - opencode
           - vertex-auth
           - build-mirrors
           - devtools
@@ -24,6 +23,8 @@ jobs:
             base-image: mcr.microsoft.com/devcontainers/java:dev-25-jdk-bookworm
           - feature: springboot-cli
             base-image: mcr.microsoft.com/devcontainers/java:dev-25-jdk-bookworm
+          - feature: opencode
+            base-image: mcr.microsoft.com/devcontainers/javascript-node:22
           - feature: playwright
             base-image: mcr.microsoft.com/devcontainers/javascript-node:22
           - feature: claude-code

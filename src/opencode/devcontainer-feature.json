@@ -10,5 +10,7 @@
       "description": "Default model ID written into opencode config."
     }
   },
-  "installsAfter": []
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/node"
+  ]
 }
