@@ -6,7 +6,7 @@
   "containerEnv": {
     "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright"
   },
-  "postCreateCommand": "cd ${containerWorkspaceFolder}/tests && npm install && echo 'Playwright deps installed. Run make pw-install to download Chromium (~180 MB).'",
+  "postCreateCommand": "test -d ${containerWorkspaceFolder}/tests && (cd ${containerWorkspaceFolder}/tests && npm install) || echo 'No tests/ dir — skipping npm install'",
   "installsAfter": [
     "ghcr.io/devcontainers/features/node"
   ]
