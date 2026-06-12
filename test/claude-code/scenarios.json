@@ -1,0 +1,11 @@
+{
+  "scenarios": [
+    {
+      "name": "Default install",
+      "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+      "features": {
+        "claude-code": {}
+      }
+    }
+  ]
+}

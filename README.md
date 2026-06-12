@@ -11,6 +11,10 @@ Wiederverwendbare DevContainer-Features für Claude-Code-Projekte, veröffentlic
 | `build-mirrors` | Konfiguriert Maven + npm für lokale Docker-Netzwerk-Mirrors (Reposilite + Verdaccio) | `ghcr.io/avogt-sundn/devcontainer-features/build-mirrors:1` |
 | `quarkus` | Installiert Quarkus CLI und deaktiviert optional Quarkus-Telemetrie | `ghcr.io/avogt-sundn/devcontainer-features/quarkus:1` |
 | `springboot-cli` | Installiert Spring Boot CLI von Maven Central | `ghcr.io/avogt-sundn/devcontainer-features/springboot-cli:1` |
+| `devtools` | Installiert Diagnose-Tools: ping, dig, telnet, ab, httpie, file | `ghcr.io/avogt-sundn/devcontainer-features/devtools:1` |
+| `playwright` | Installiert Playwright-Systemabhängigkeiten und bakt Chromium ins Image | `ghcr.io/avogt-sundn/devcontainer-features/playwright:1` |
+| `claude-code` | Installiert Claude Code CLI global via npm | `ghcr.io/avogt-sundn/devcontainer-features/claude-code:1` |
+| `copilot-cli` | Installiert GitHub Copilot CLI global via npm | `ghcr.io/avogt-sundn/devcontainer-features/copilot-cli:1` |
 
 ## Verwendung
 
@@ -40,6 +44,10 @@ devcontainer features test -f vertex-auth .
 devcontainer features test -f build-mirrors .
 devcontainer features test -f quarkus .
 devcontainer features test -f springboot-cli .
+devcontainer features test -f devtools .
+devcontainer features test -f playwright .
+devcontainer features test -f claude-code .
+devcontainer features test -f copilot-cli .
 ```
 
 ## Veröffentlichung

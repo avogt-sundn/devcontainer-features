@@ -18,11 +18,18 @@ jobs:
           - opencode
           - vertex-auth
           - build-mirrors
+          - devtools
         include:
           - feature: quarkus
             base-image: mcr.microsoft.com/devcontainers/java:dev-25-jdk-bookworm
           - feature: springboot-cli
             base-image: mcr.microsoft.com/devcontainers/java:dev-25-jdk-bookworm
+          - feature: playwright
+            base-image: mcr.microsoft.com/devcontainers/javascript-node:22
+          - feature: claude-code
+            base-image: mcr.microsoft.com/devcontainers/javascript-node:22
+          - feature: copilot-cli
+            base-image: mcr.microsoft.com/devcontainers/javascript-node:22
     steps:
       - uses: actions/checkout@v4
 

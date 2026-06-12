@@ -1,0 +1,19 @@
+{
+  "id": "playwright",
+  "version": "1.0.0",
+  "name": "Playwright Chromium",
+  "description": "Installs Playwright system dependencies and bakes the Chromium browser into the image.",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "1.58.2",
+      "description": "Playwright version to install."
+    }
+  },
+  "containerEnv": {
+    "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright"
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/node"
+  ]
+}
