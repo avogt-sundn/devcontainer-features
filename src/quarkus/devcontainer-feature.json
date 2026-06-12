@@ -1,6 +1,6 @@
 {
   "id": "quarkus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Quarkus CLI",
   "description": "Installs the Quarkus CLI and optionally disables Quarkus telemetry.",
   "options": {

@@ -1,6 +1,6 @@
 {
   "id": "opencode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "OpenCode",
   "description": "Installs the OpenCode CLI and copies its config to the user home directory at image build time.",
   "options": {

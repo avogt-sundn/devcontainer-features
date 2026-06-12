@@ -1,6 +1,6 @@
 {
   "id": "copilot-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "GitHub Copilot CLI",
   "description": "Installs the GitHub Copilot CLI globally via npm.",
   "installsAfter": [

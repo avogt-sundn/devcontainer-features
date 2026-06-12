@@ -1,6 +1,6 @@
 {
   "id": "playwright",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Playwright Chromium",
   "description": "Installs Playwright OS-level dependencies and test npm packages. Run `make pw-install` once to download Chromium (~180 MB).",
   "containerEnv": {

@@ -1,6 +1,6 @@
 {
   "id": "springboot-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Spring Boot CLI",
   "description": "Installs the Spring Boot CLI from Maven Central.",
   "options": {

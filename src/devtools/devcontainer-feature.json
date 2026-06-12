@@ -1,6 +1,6 @@
 {
   "id": "devtools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Dev Tools",
   "description": "Installs common development/diagnostic utilities: ping, dig, telnet, ab, httpie, file.",
   "installsAfter": []
