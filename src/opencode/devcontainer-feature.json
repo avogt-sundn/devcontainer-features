@@ -1,6 +1,6 @@
 {
   "id": "opencode",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "OpenCode",
   "description": "Installs the OpenCode CLI and copies its config to the user home directory at image build time.",
   "options": {
@@ -9,6 +9,9 @@
       "default": "mlx/gemma-4-26b-a4b-it-mlx",
       "description": "Default model ID written into opencode config."
     }
+  },
+  "dependsOn": {
+    "ghcr.io/devcontainers/features/node:1": {}
   },
   "installsAfter": [
     "ghcr.io/devcontainers/features/node"

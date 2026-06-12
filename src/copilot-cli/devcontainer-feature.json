@@ -1,8 +1,11 @@
 {
   "id": "copilot-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "GitHub Copilot CLI",
   "description": "Installs the GitHub Copilot CLI globally via npm.",
+  "dependsOn": {
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
   "installsAfter": [
     "ghcr.io/devcontainers/features/node"
   ]
