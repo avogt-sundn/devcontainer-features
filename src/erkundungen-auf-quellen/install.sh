@@ -28,19 +28,11 @@ python3 -m pip install --quiet --break-system-packages \
     fpdf2 \
     cairosvg
 
-# Claude Code — portable agents, tools, grafiken, statusline
+# Claude Code — Dateien in Image-Share ablegen; postCreate.sh seedet den Workspace
 FEATURE_DIR="$(dirname "$0")"
-CLAUDE_HOME="/home/vscode/.claude"
+SHARE="/usr/local/share/erkundungen-auf-quellen"
 
-mkdir -p "$CLAUDE_HOME/agents" "$CLAUDE_HOME/grafiken" "$CLAUDE_HOME/tools"
-
-cp "$FEATURE_DIR/claude/CLAUDE.md" "$CLAUDE_HOME/CLAUDE.md"
-cp -r "$FEATURE_DIR/claude/agents/." "$CLAUDE_HOME/agents/"
-cp -r "$FEATURE_DIR/claude/grafiken/." "$CLAUDE_HOME/grafiken/"
-cp -r "$FEATURE_DIR/claude/tools/." "$CLAUDE_HOME/tools/"
-cp "$FEATURE_DIR/claude/statusline-command.sh" "$CLAUDE_HOME/statusline-command.sh"
-
-# npm-Abhängigkeiten für Tools (playwright-core u. a.)
-cd "$CLAUDE_HOME/tools" && npm install --prefer-offline 2>/dev/null || true
-
-chown -R vscode:vscode "$CLAUDE_HOME"
+mkdir -p "$SHARE"
+cp -r "$FEATURE_DIR/claude" "$SHARE/claude"
+cp "$FEATURE_DIR/postCreate.sh" "$SHARE/postCreate.sh"
+chmod +x "$SHARE/postCreate.sh"
