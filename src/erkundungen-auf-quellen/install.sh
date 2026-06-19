@@ -12,10 +12,11 @@ apt-get update && apt-get install -y --no-install-recommends \
     libgdk-pixbuf2.0-0 \
     libffi-dev \
     shared-mime-info \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 # tabula-py benötigt Java (im Basis-Image mcr.microsoft.com/devcontainers/java vorhanden)
-pip install --quiet --break-system-packages \
+python3 -m pip install --quiet --break-system-packages \
     pdfplumber \
     pymupdf \
     pypdf \
