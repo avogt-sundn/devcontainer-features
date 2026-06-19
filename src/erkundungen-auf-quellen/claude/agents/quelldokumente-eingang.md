@@ -116,8 +116,8 @@ Existiert bereits eine `INHALT.md` (beim Einsortieren in einen bestehenden Ordne
 
 ## Regeln
 
-- **[CLAUDE-3]** Jede Quelldatei vor dem Verschieben lesen/analysieren — nie blind umbenennen.
-- **[CLAUDE-5]** Nur `_eingang/` und `quelldokumente/` anfassen. Keine anderen Ordner.
-- **[CLAUDE-7]** Immer Bericht + Bestätigung vor dem Verschieben — Verschieben ist nicht reversibel ohne `git`.
+- **[EAQ-3]** Jede Quelldatei vor dem Verschieben lesen/analysieren — nie blind umbenennen.
+- **[EAQ-5]** Nur `_eingang/` und `quelldokumente/` anfassen. Keine anderen Ordner.
+- **[EAQ-7]** Immer Bericht + Bestätigung vor dem Verschieben — Verschieben ist nicht reversibel ohne `git`.
 - Existierende Ordner in `quelldokumente/` bevorzugen: Nicht unnötig neue anlegen.
 - Ordnernamen sind `kebab-case`, ohne Versionsnummern, ohne Datum.

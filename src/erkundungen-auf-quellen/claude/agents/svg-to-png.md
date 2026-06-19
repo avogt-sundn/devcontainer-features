@@ -67,5 +67,5 @@ Chromium-Pfad überschreibbar per `CHROMIUM_PATH`-Umgebungsvariable.
 
 ## Regeln
 
-- **[CLAUDE-5]** Nur die Ziel-PNG-Dateien schreiben. SVG-Dateien nicht anfassen.
-- **[CLAUDE-14]** Skalierungsfaktor immer nennen, wenn er vom Standard (2) abweicht.
+- **[EAQ-5]** Nur die Ziel-PNG-Dateien schreiben. SVG-Dateien nicht anfassen.
+- **[EAQ-14]** Skalierungsfaktor immer nennen, wenn er vom Standard (2) abweicht.

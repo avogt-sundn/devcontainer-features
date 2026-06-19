@@ -153,7 +153,7 @@ Folgendes bleibt unverändert:
 
 ## Regeln
 
-- **[CLAUDE-3]** Quelldatei in derselben Session lesen, bevor geschrieben wird.
-- **[CLAUDE-5]** Nur die Zieldatei (`<stem>.confluence`) schreiben. Keine anderen Dateien anfassen.
-- **[CLAUDE-8]** Vor dem Schreiben `quelldokumente/eva-kreditrahmen-sicherheiten/INHALT.confluence` als Stilreferenz prüfen, falls noch nicht in dieser Session gelesen.
+- **[EAQ-3]** Quelldatei in derselben Session lesen, bevor geschrieben wird.
+- **[EAQ-5]** Nur die Zieldatei (`<stem>.confluence`) schreiben. Keine anderen Dateien anfassen.
+- **[EAQ-8]** Vor dem Schreiben `quelldokumente/eva-kreditrahmen-sicherheiten/INHALT.confluence` als Stilreferenz prüfen, falls noch nicht in dieser Session gelesen.
 - Keine Rückfragen, keine Zusammenfassung — nur schreiben und fertig melden.
