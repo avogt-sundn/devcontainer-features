@@ -1,0 +1,7 @@
+{
+  "id": "erkundungen-auf-quellen",
+  "version": "1.0.0",
+  "name": "Erkundungen auf Quellen",
+  "description": "Installiert PDF- und Dokumentenverarbeitungs-Tools (pdfplumber, pymupdf, tesseract, poppler, pandoc) für Wissens-Erkundungen auf Quelldokumenten.",
+  "installsAfter": []
+}
