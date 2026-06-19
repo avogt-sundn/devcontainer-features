@@ -28,3 +28,6 @@ for f in "$SHARE/tools/"*; do
 done
 
 seed "$SHARE/statusline-command.sh" "$DEST/statusline-command.sh"
+
+# Axiome global verfügbar machen — Claude Code liest ~/.claude/CLAUDE.md in jeder Session
+seed "$SHARE/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
