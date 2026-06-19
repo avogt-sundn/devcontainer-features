@@ -34,6 +34,7 @@ CLAUDE_HOME="/home/vscode/.claude"
 
 mkdir -p "$CLAUDE_HOME/agents" "$CLAUDE_HOME/grafiken" "$CLAUDE_HOME/tools"
 
+cp "$FEATURE_DIR/claude/CLAUDE.md" "$CLAUDE_HOME/CLAUDE.md"
 cp -r "$FEATURE_DIR/claude/agents/." "$CLAUDE_HOME/agents/"
 cp -r "$FEATURE_DIR/claude/grafiken/." "$CLAUDE_HOME/grafiken/"
 cp -r "$FEATURE_DIR/claude/tools/." "$CLAUDE_HOME/tools/"
