@@ -1,0 +1,8 @@
+{
+  "name": "carnet-claude-tools",
+  "private": true,
+  "description": "Internal Claude Code tools — dependencies installed by postCreate-playwright-deps.sh",
+  "dependencies": {
+    "playwright-core": "^1.61.0"
+  }
+}

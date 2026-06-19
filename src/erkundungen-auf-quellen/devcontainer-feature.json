@@ -1,6 +1,6 @@
 {
   "id": "erkundungen-auf-quellen",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "name": "Erkundungen auf Quellen",
   "description": "PDF lesen/schreiben, OCR, Tabellenextraktion, SVG→PNG (rsvg-convert, cairosvg), Confluence-Markup via pandoc -t jira. Legt quelldokumente/ und erkundungen/ im Workspace an.",
   "postCreateCommand": "mkdir -p ${containerWorkspaceFolder}/quelldokumente ${containerWorkspaceFolder}/erkundungen",

@@ -27,3 +27,19 @@ python3 -m pip install --quiet --break-system-packages \
     reportlab \
     fpdf2 \
     cairosvg
+
+# Claude Code — portable agents, tools, grafiken, statusline
+FEATURE_DIR="$(dirname "$0")"
+CLAUDE_HOME="/home/vscode/.claude"
+
+mkdir -p "$CLAUDE_HOME/agents" "$CLAUDE_HOME/grafiken" "$CLAUDE_HOME/tools"
+
+cp -r "$FEATURE_DIR/claude/agents/." "$CLAUDE_HOME/agents/"
+cp -r "$FEATURE_DIR/claude/grafiken/." "$CLAUDE_HOME/grafiken/"
+cp -r "$FEATURE_DIR/claude/tools/." "$CLAUDE_HOME/tools/"
+cp "$FEATURE_DIR/claude/statusline-command.sh" "$CLAUDE_HOME/statusline-command.sh"
+
+# npm-Abhängigkeiten für Tools (playwright-core u. a.)
+cd "$CLAUDE_HOME/tools" && npm install --prefer-offline 2>/dev/null || true
+
+chown -R vscode:vscode "$CLAUDE_HOME"
