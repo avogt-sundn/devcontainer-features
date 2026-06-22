@@ -1,10 +1,10 @@
 {
   "id": "opencode",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "OpenCode",
   "description": "Installs the OpenCode CLI and copies its config to the user home directory at image build time.",
   "options": {
-    "model": {
+    "preset": {
       "type": "string",
       "default": "mlx/gemma-4-26b-a4b-it-mlx",
       "description": "Default model ID written into opencode config."
