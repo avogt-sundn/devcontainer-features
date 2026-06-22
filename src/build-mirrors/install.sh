@@ -1,19 +1,34 @@
 #!/bin/bash
 set -e
 
+NETWORK="${NETWORK:-docker-default-network}"
 MAVEN_MIRROR_URL="${MAVENMIRRORURL:-http://maven-mirror:8080/central}"
 MAVEN_MIRROR_ID="${MAVENMIRRORID:-dockerized-mirror}"
 NPM_TOKEN="${NPMTOKEN:-dummy-token}"
+FEATURE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DEST=/usr/local/lib/devcontainer-features/build-mirrors
 
-mkdir -p /usr/local/lib/devcontainer-features
+mkdir -p "$DEST"
+cp "$FEATURE_DIR/docker-compose.yaml" "$DEST/"
+cp -r "$FEATURE_DIR/maven-mirror" "$DEST/"
+cp -r "$FEATURE_DIR/npm-mirror" "$DEST/"
 
 cat > /usr/local/lib/devcontainer-features/build-mirrors-setup.sh <<OUTER
 #!/bin/bash
 set -e
 
+# Start mirror containers
+docker network create "${NETWORK}" 2>/dev/null || true
+cd /usr/local/lib/devcontainer-features/build-mirrors
+docker compose --profile mirrors up -d --build
+echo "[build-mirrors] Mirrors started on network ${NETWORK}."
+
 # Maven mirror — write settings.xml into the (potentially volume-mounted) .m2 dir
 M2_DIR="\${HOME}/.m2"
 mkdir -p "\$M2_DIR"
+if [ "\$(stat -c %u "\$M2_DIR")" = "0" ]; then
+  sudo chown -R "\$(id -un)" "\$M2_DIR"
+fi
 cat > "\$M2_DIR/settings.xml" <<EOF
 <settings>
     <mirrors>

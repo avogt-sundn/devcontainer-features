@@ -1,9 +1,14 @@
 {
   "id": "build-mirrors",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "name": "Build Mirrors",
-  "description": "Configures Maven and npm to use local Docker-network mirrors (Reposilite + Verdaccio).",
+  "description": "Starts local Maven (Reposilite) and npm (Verdaccio) mirror containers and configures Maven and npm to use them.",
   "options": {
+    "network": {
+      "type": "string",
+      "default": "docker-default-network",
+      "description": "Docker network that the mirrors will join"
+    },
     "mavenMirrorUrl": {
       "type": "string",
       "default": "http://maven-mirror:8080/central",
