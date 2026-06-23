@@ -16,14 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Publish features
-        uses: devcontainers/action@v1
-        with:
-          publish-features: "true"
-          oci-registry: "ghcr.io"
-          features-namespace: "${{ github.repository_owner }}/devcontainer-features"
-          base-path-to-features: "src"
+      - name: Install devcontainer CLI
+        run: npm install --location=global @devcontainers/cli
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
           NODE_OPTIONS: "--no-deprecation"
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Publish features
+        run: |
+          devcontainer features publish \
+            --namespace "${{ github.repository_owner }}/devcontainer-features" \
+            --oci-registry ghcr.io \
+            src
+        env:
+          NODE_OPTIONS: "--no-deprecation"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
