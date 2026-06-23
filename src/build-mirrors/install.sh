@@ -17,6 +17,11 @@ cat > /usr/local/lib/devcontainer-features/build-mirrors-setup.sh <<OUTER
 #!/bin/bash
 set -e
 
+if ! command -v docker &>/dev/null; then
+  echo "[build-mirrors] Docker not available — skipping mirror start."
+  exit 0
+fi
+
 # Start mirror containers
 docker network create "${NETWORK}" 2>/dev/null || true
 cd /usr/local/lib/devcontainer-features/build-mirrors

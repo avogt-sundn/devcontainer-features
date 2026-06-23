@@ -1,6 +1,6 @@
 {
   "id": "build-mirrors",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "Build Mirrors",
   "description": "Starts local Maven (Reposilite) and npm (Verdaccio) mirror containers and configures Maven and npm to use them.",
   "options": {
