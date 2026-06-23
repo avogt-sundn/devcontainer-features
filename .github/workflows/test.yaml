@@ -41,3 +41,5 @@ jobs:
 
       - name: Test ${{ matrix.feature }}
         run: devcontainer features test -f ${{ matrix.feature }} --skip-scenarios --base-image ${{ matrix.base-image || 'mcr.microsoft.com/devcontainers/base:ubuntu' }} .
+        env:
+          NODE_OPTIONS: "--no-deprecation"
