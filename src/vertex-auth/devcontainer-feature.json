@@ -1,8 +1,16 @@
 {
   "id": "vertex-auth",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "name": "Vertex AI Auth",
   "description": "Ensures GCP config dir exists at build time; validates service-account JSON at container start.",
+  "mounts": [
+    {
+      "source": "${localEnv:HOME}/.config/gcp/vertex-service-account.json",
+      "target": "/home/vscode/.config/gcp/vertex-service-account.json",
+      "type": "bind",
+      "options": ["readonly"]
+    }
+  ],
   "postCreateCommand": "/usr/local/lib/devcontainer-features/vertex-auth-validate.sh",
   "installsAfter": []
 }
