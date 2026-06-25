@@ -15,6 +15,7 @@ Wiederverwendbare DevContainer-Features für Claude-Code-Projekte, veröffentlic
 | `playwright` | Installiert Playwright OS-Systemabhängigkeiten (kein Chromium — Download via `make pw-install`) | `ghcr.io/avogt-sundn/devcontainer-features/playwright:1` |
 | `claude-code` | Installiert Claude Code CLI global via npm | `ghcr.io/avogt-sundn/devcontainer-features/claude-code:1` |
 | `copilot-cli` | Installiert GitHub Copilot CLI global via npm | `ghcr.io/avogt-sundn/devcontainer-features/copilot-cli:1` |
+| `common-standards` | Wendet Formatierungs-Config aus `avogt-sundn/common-standards` bei jedem Rebuild auf den Workspace an | `ghcr.io/avogt-sundn/devcontainer-features/common-standards:1` |
 
 ## Verwendung
 
@@ -48,6 +49,7 @@ devcontainer features test -f devtools .
 devcontainer features test -f playwright .
 devcontainer features test -f claude-code .
 devcontainer features test -f copilot-cli .
+devcontainer features test -f common-standards .
 ```
 
 ## Veröffentlichung

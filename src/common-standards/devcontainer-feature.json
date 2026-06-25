@@ -1,0 +1,25 @@
+{
+  "id": "common-standards",
+  "version": "1.0.0",
+  "name": "Common Standards",
+  "description": "Applies avogt-sundn/common-standards formatting config on every container rebuild. Set freeze to a reason string to opt out.",
+  "postCreateCommand": "/usr/local/lib/devcontainer-features/common-standards-apply.sh",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "main",
+      "description": "Branch or tag of avogt-sundn/common-standards to pin (e.g. 'main', 'v1.2.0')"
+    },
+    "categories": {
+      "type": "string",
+      "default": "universal,java,frontend",
+      "description": "Comma-separated list of config sets to apply: universal, java, frontend, vscode"
+    },
+    "freeze": {
+      "type": "string",
+      "default": "",
+      "description": "Set to a reason string to suppress auto-updates (e.g. 'legacy formatter, tracked in PROJ-441'). Empty = auto-update on every rebuild."
+    }
+  },
+  "installsAfter": []
+}
