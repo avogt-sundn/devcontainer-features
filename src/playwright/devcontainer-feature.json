@@ -1,13 +1,13 @@
 {
   "id": "playwright",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Playwright Chromium",
-  "description": "Installs Playwright OS-level dependencies and test npm packages. Run `make pw-install` once to download Chromium (~180 MB).",
+  "description": "Installs Playwright OS-level dependencies, npm packages, and Chromium browser.",
   "containerEnv": {
     "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright",
     "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
   },
-  "postCreateCommand": "test -d ${containerWorkspaceFolder}/tests && (cd ${containerWorkspaceFolder}/tests && npm install) || echo 'No tests/ dir — skipping npm install'",
+  "postCreateCommand": "test -d ${containerWorkspaceFolder}/tests && (cd ${containerWorkspaceFolder}/tests && npm install && npx playwright install chromium) || echo 'No tests/ dir — skipping npm install'",
   "installsAfter": [
     "ghcr.io/devcontainers/features/node"
   ]

@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
-echo "Install only OS-level system dependencies here (fast, no network downloads)."
-sleep 5
 # Install only OS-level system dependencies here (fast, no network downloads).
-# Chromium binary is NOT fetched here — run `make pw-install` once after container start.
 apt-get update && apt-get install -y --no-install-recommends \
     xvfb \
     libglib2.0-0 \
