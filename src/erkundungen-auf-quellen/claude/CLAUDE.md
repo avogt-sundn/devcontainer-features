@@ -16,7 +16,9 @@
 - **[EAQ-12] Sub-Agent-Delegation vor dem Aufruf ankündigen.** Orchestrierende Agenten müssen jeden Sub-Agenten und dessen Begründung nennen, bevor sie ihn aufrufen.
 - **[EAQ-13] Wissenskarte vor jeder Scoped-Arbeit traversieren.** Vor jeder Ausgabe für eine Domäne, einen Ordner oder ein Ticket in dieser Reihenfolge lesen: (1) `CLAUDE.md`, (2) relevante Agent-Dateien aus `.claude/agents/`, (3) `<domäne>/DOMAIN.md`. Partielle Traversierung gilt nicht.
 - **[EAQ-14] Geltende Regel für jede nicht-triviale Entscheidung nennen.** Bei der Wahl zwischen gültigen Optionen — Benennung, Ansatz, Architektur, Strategie — muss der Agent benennen, welches Axiom, welche Konvention oder welches bestehende Muster diese Wahl begründet. Stille Standards sind verboten; jeder sichtbare Entscheidungspunkt muss seine Begründung tragen.
-- **[EAQ-15] Diagramme immer als SVG — Styleguide und Vorlage zwingend.** Jedes Diagramm, jede Skizze und jedes Schema wird als `.svg`-Datei angelegt und per `![Titel](datei.svg)` verlinkt. ASCII-Grafiken in Codeblöcken sind verboten — auch als Entwurf. Vor jeder neuen SVG müssen `~/.claude/grafiken/STYLEGUIDE.md` und `~/.claude/grafiken/vorlage.svg` in derselben Session gelesen worden sein; die `<defs>` (Marker + CSS-Klassen) aus der Vorlage sind Ausgangspunkt jeder SVG.
+- **[EAQ-15] Keine ASCII-Grafiken — Mermaid oder SVG je nach Schwelle.** ASCII-Grafiken in Codeblöcken sind verboten — auch als Entwurf. Stattdessen gilt die folgende Schwelle:
+  - **Mermaid** (` ```mermaid ` Block, inline im Markdown): Standard-Diagrammtypen — `flowchart`, `sequenceDiagram`, `stateDiagram-v2`, `erDiagram`, `classDiagram`. Geeignet wenn: kein Repo-Styling erforderlich, Inhalt wird häufig bearbeitet, kein Swimlane-Layout.
+  - **SVG** (`.svg`-Datei, eingebettet per `![Titel](datei.svg)`): Swimlane, custom Layout, Repo-Designsprache, stabile Showcase-Diagramme. Vor jeder neuen SVG müssen `STYLEGUIDE.md` und `vorlage.svg` in derselben Session gelesen worden sein; die `<defs>` aus der Vorlage sind Ausgangspunkt. Nach jeder SVG-Erstellung/-Änderung PNG erzeugen (via `rsvg-convert` oder `node .claude/tools/svg-to-png.js`) und committen.
 
 ---
 

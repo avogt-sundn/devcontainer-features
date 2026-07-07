@@ -65,7 +65,21 @@ Chromium-Pfad überschreibbar per `CHROMIUM_PATH`-Umgebungsvariable.
 
 ---
 
+## Schnellweg via Shell
+
+Wenn ein Projekt-eigenes Skript vorhanden ist (`scripts/svg-to-png.sh`), dieses bevorzugen:
+
+```bash
+bash scripts/svg-to-png.sh pfad/zu/datei.svg   # einzelne Datei
+bash scripts/svg-to-png.sh                      # alle SVGs im Repo
+```
+
+Das Skript nutzt `rsvg-convert` (vom Feature bereitgestellt) und erzeugt PNGs mit 1200 px Breite.
+
+---
+
 ## Regeln
 
 - **[EAQ-5]** Nur die Ziel-PNG-Dateien schreiben. SVG-Dateien nicht anfassen.
 - **[EAQ-14]** Skalierungsfaktor immer nennen, wenn er vom Standard (2) abweicht.
+- **[EAQ-15]** PNG-Erstellung ist Pflicht nach jeder SVG-Erstellung oder -Änderung. PNG wird committed.
