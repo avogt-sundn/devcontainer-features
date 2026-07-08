@@ -42,4 +42,8 @@ SHARE="/usr/local/share/erkundungen-auf-quellen"
 mkdir -p "$SHARE"
 cp -r "$FEATURE_DIR/claude" "$SHARE/claude"
 cp "$FEATURE_DIR/postCreate.sh" "$SHARE/postCreate.sh"
+cp "$FEATURE_DIR/erkundungen-domain.md" "$SHARE/erkundungen-domain.md"
 chmod +x "$SHARE/postCreate.sh"
+
+# Feature-Version für Laufzeit-Versionsvergleiche persistieren
+python3 -c "import json; print(json.load(open('$FEATURE_DIR/devcontainer-feature.json'))['version'])" > "$SHARE/VERSION"
