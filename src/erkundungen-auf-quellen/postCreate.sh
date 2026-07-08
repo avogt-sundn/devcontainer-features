@@ -31,15 +31,3 @@ seed "$SHARE/statusline-command.sh" "$DEST/statusline-command.sh"
 
 # Axiome global verfügbar machen — Claude Code liest ~/.claude/CLAUDE.md in jeder Session
 seed "$SHARE/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-
-# Veraltete Konventionen erkennen und Hinweis ausgeben
-_OLD=""
-[ -d "$WORKSPACE/abhandlungen" ] && _OLD="abhandlungen/"
-_SVG_PNG=$(find "$WORKSPACE" -not -path "*/.git/*" \( -name "*-svg.md" -o -name "*-png.md" \) 2>/dev/null | head -1)
-[ -n "$_SVG_PNG" ] && _OLD="${_OLD} *-svg.md/*-png.md"
-if [ -n "$_OLD" ]; then
-    echo ""
-    echo "[erkundungen-auf-quellen] Veraltete Workspace-Konventionen erkannt: ${_OLD}"
-    echo "  → In Claude Code ausführen: 'Migriere diesen Workspace auf die aktuellen erkundungen-auf-quellen Konventionen'"
-    echo ""
-fi
