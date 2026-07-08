@@ -1,26 +1,26 @@
 # Agent: docs-export
 
-Exportiert Markdown-Dateien mit Mermaid-Diagrammen als HTML und PDF.
+Exportiert Markdown-Dateien mit eingebetteten SVG-Diagrammen als PDF.
 
 ## Aufruf
 
 ```
-Exportiere docs/acl/ACL-ARCHITEKTUR.md als HTML und PDF
+Exportiere abhandlungen/suchmaschinenwahl-partnerverzeichnis/suchmaschinenwahl-partnerverzeichnis.md als PDF
 ```
 
 oder mehrere auf einmal:
 
 ```
-Exportiere alle Markdown-Dateien in docs/acl/ als HTML und PDF
+Exportiere alle .md-Dateien in abhandlungen/ als PDF
 ```
 
 ## Was der Agent tut
 
-1. Empfängt eine oder mehrere `.md`-Dateien als Eingabe
-2. Rendert alle ` ```mermaid ` Blöcke via `mmdc` zu SVG (Chromium, lokal)
-3. Baut eine gestylte HTML-Datei mit inline-SVG im selben Verzeichnis
-4. Generiert ein A4-PDF via Playwright Chromium
-5. Meldet Erfolg oder Fehler pro Datei
+1. Empfängt eine oder mehrere `.md`-Dateien als Eingabe.
+2. Löst `![Titel](datei.svg)`-Referenzen inline auf — SVG wird direkt in HTML eingebettet.
+3. Erzeugt ein A4-PDF im selben Verzeichnis wie die Markdown-Datei.
+4. HTML ist internes Zwischenformat (`/tmp/domain-to-pdf-tmp.html`) — wird nicht committed, nicht weitergegeben.
+5. Meldet den Ausgabepfad oder Fehler pro Datei.
 
 ## Tool-Aufruf
 
@@ -30,48 +30,31 @@ node .claude/tools/domain-to-pdf.js <eingabe.md> [ausgabe.pdf]
 
 **Beispiele**:
 ```bash
-node .claude/tools/domain-to-pdf.js erkundungen/wie-modelliert-man-das-carnet-datenmodell/DOMAIN.md
-node .claude/tools/domain-to-pdf.js erkundungen/wie-schuetzt-ein-acl-das-erp-vor-der-externen-api/DOMAIN.md
-node .claude/tools/domain-to-pdf.js erkundungen/wie-kommt-ein-neuer-kunde-ins-system/DOMAIN.md /tmp/kundenaufnahme.pdf
+node .claude/tools/domain-to-pdf.js abhandlungen/suchmaschinenwahl-partnerverzeichnis/suchmaschinenwahl-partnerverzeichnis.md
+node .claude/tools/domain-to-pdf.js abhandlungen/carnet-web-facharchitektur/carnet-web-facharchitektur.md /tmp/carnet-web.pdf
 ```
 
-## Voraussetzungen (bereits im DevContainer eingerichtet)
+## Voraussetzungen (durch DevContainer eingerichtet)
 
-| Was | Status |
+| Was | Bereitgestellt durch |
 |---|---|
-| `mmdc` (mermaid-cli) | `npm install -g @mermaid-js/mermaid-cli` — global installiert |
-| `marked` | `cd /tmp && npm install marked` |
-| `playwright` | `cd /tmp && npm install playwright` |
-| Puppeteer-Konfig | `/tmp/puppeteer-cfg.json` vorhanden |
-| Chromium | `/ms-playwright/chromium-1208/chrome-linux/chrome` |
+| Chromium | ms-playwright (Playwright-Feature oder Basis-Image); dynamisch gesucht unter `~/.cache/ms-playwright/` |
+| Node.js | Basis-Image |
 
-Falls `/tmp/puppeteer-cfg.json` fehlt (nach Container-Neustart):
+Falls Chromium nicht gefunden wird:
 ```bash
-echo '{"executablePath":"/ms-playwright/chromium-1208/chrome-linux/chrome","args":["--no-sandbox","--disable-setuid-sandbox"]}' > /tmp/puppeteer-cfg.json
+npx playwright install chromium
 ```
 
-Falls `/tmp/node_modules` fehlt (nach Container-Neustart):
-```bash
-cd /tmp && npm install marked playwright
-```
+## Diagramme im Markdown
 
-## Regeln für Mermaid in Markdown-Dateien dieses Repos
-
-Damit `mmdc` fehlerfrei rendert, gelten folgende Einschränkungen:
-
-| Verboten | Erlaubt stattdessen |
+| Typ | Verhalten im PDF |
 |---|---|
-| Semikolons `;` in Labels/Notes | Komma `,` oder Satz ohne Semikolon |
-| HTML-Entities `&lt;` `&gt;` | Tilde-Notation `~Typ~` für Generics |
-| `<br/>` oder `<br>` in Labels | Leerzeichen oder Zeilenumbruch via `\n` in `["..."]` |
-| `<` `>` als Vergleichsoperatoren | ausschreiben: "unter 24 h" statt "< 24 h" |
+| `![](datei.svg)` | SVG wird inline aufgelöst — erscheint vollständig gerendert |
+| Mermaid-Block | Fällt auf Codeblock zurück — für `sequenceDiagram` gemäß [EAQ-15] akzeptabel |
+| ASCII-Tabellen, Codeblöcke | Werden korrekt gerendert |
 
 ## Ausgabedateien
 
-Neben der `.md`-Datei entstehen:
-- `<stem>.html` — eigenständiges HTML mit eingebetteten SVG-Diagrammen
-- `<stem>.pdf` — A4-PDF, druckoptimiert
-
-## Fehlerbehandlung
-
-Schlägt ein einzelnes Mermaid-Diagramm fehl, wird an seiner Stelle ein roter Fehlertext eingebettet — die übrigen Diagramme und das restliche Dokument werden trotzdem exportiert.
+- `<stem>.pdf` im selben Verzeichnis wie `<stem>.md`
+- HTML-Zwischendatei: `/tmp/domain-to-pdf-tmp.html` (temporär — nicht committen)

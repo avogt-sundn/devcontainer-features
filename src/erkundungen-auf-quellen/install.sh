@@ -28,6 +28,13 @@ python3 -m pip install --quiet --break-system-packages \
     fpdf2 \
     cairosvg
 
+# Chromium — wird von domain-to-pdf.js und svg-to-png.js benötigt.
+# Wird NICHT hier installiert: kommt aus dem Playwright-Feature oder dem Basis-Image
+# (gesucht unter ~/.cache/ms-playwright/chromium-*/chrome-linux/chrome).
+# Falls nicht vorhanden: npx playwright install chromium
+#
+# rsvg-convert (aus librsvg2-bin oben) ist die Chromium-freie Alternative für SVG→PNG.
+
 # Claude Code — Dateien in Image-Share ablegen; postCreate.sh seedet den Workspace
 FEATURE_DIR="$(dirname "$0")"
 SHARE="/usr/local/share/erkundungen-auf-quellen"

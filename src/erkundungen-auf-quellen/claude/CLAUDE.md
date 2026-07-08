@@ -16,9 +16,23 @@
 - **[EAQ-12] Sub-Agent-Delegation vor dem Aufruf ankündigen.** Orchestrierende Agenten müssen jeden Sub-Agenten und dessen Begründung nennen, bevor sie ihn aufrufen.
 - **[EAQ-13] Wissenskarte vor jeder Scoped-Arbeit traversieren.** Vor jeder Ausgabe für eine Domäne, einen Ordner oder ein Ticket in dieser Reihenfolge lesen: (1) `CLAUDE.md`, (2) relevante Agent-Dateien aus `.claude/agents/`, (3) `<domäne>/DOMAIN.md`. Partielle Traversierung gilt nicht.
 - **[EAQ-14] Geltende Regel für jede nicht-triviale Entscheidung nennen.** Bei der Wahl zwischen gültigen Optionen — Benennung, Ansatz, Architektur, Strategie — muss der Agent benennen, welches Axiom, welche Konvention oder welches bestehende Muster diese Wahl begründet. Stille Standards sind verboten; jeder sichtbare Entscheidungspunkt muss seine Begründung tragen.
-- **[EAQ-15] Keine ASCII-Grafiken — Mermaid oder SVG je nach Schwelle.** ASCII-Grafiken in Codeblöcken sind verboten — auch als Entwurf. Stattdessen gilt die folgende Schwelle:
-  - **Mermaid** (` ```mermaid ` Block, inline im Markdown): Standard-Diagrammtypen — `flowchart`, `sequenceDiagram`, `stateDiagram-v2`, `erDiagram`, `classDiagram`. Geeignet wenn: kein Repo-Styling erforderlich, Inhalt wird häufig bearbeitet, kein Swimlane-Layout.
-  - **SVG** (`.svg`-Datei, eingebettet per `![Titel](datei.svg)`): Swimlane, custom Layout, Repo-Designsprache, stabile Showcase-Diagramme. Vor jeder neuen SVG müssen `STYLEGUIDE.md` und `vorlage.svg` in derselben Session gelesen worden sein; die `<defs>` aus der Vorlage sind Ausgangspunkt. Nach jeder SVG-Erstellung/-Änderung PNG erzeugen (via `rsvg-convert` oder `node .claude/tools/svg-to-png.js`) und committen.
+- **[EAQ-15] Drei-Stufen-Diagrammregel — Komplexität entscheidet.** Wähle das einfachste Format, das den Informationsgehalt vollständig transportiert. Kein Format darf dasselbe Diagramm doppelt abbilden (kein ASCII+SVG-Duplikat).
+
+  | Stufe | Format | Schwelle |
+  |---|---|---|
+  | 1 | **ASCII** (Codeblock) | Tabellen, Datei-/Ordner-Bäume, einfache lineare Strukturen — direkt in Confluence einfügbar |
+  | 2 | **Mermaid** (` ```mermaid `) | Ausschließlich `sequenceDiagram` für Mehrakteur-Abläufe, die in ASCII unleserlich werden; alle anderen Typen → Stufe 1 oder 3 |
+  | 3 | **SVG** (`![Titel](datei.svg)`) | Architekturübersichten im Slidedeck-Stil, Swimlane, Farbkodierung, mehr als ~12 Knoten |
+
+  **SVG-Pflichten:** Vor jeder neuen SVG `STYLEGUIDE.md` und `vorlage.svg` in derselben Session lesen. Nach jeder SVG-Erstellung oder -Änderung PNG erzeugen und committen:
+  ```bash
+  rsvg-convert -o datei.png datei.svg
+  ```
+  PNG wird für Confluence-Upload und Previewer ohne SVG-Support benötigt.
+
+  **Ausgabeformate:** Markdown mit eingebetteten SVGs ist das primäre, versionierte Format. PDF (`node .claude/tools/domain-to-pdf.js <datei.md>`) ist das Transportmedium — Stakeholder, Ablage, Druck. HTML ist internes Zwischenformat: entsteht in `/tmp`, wird nie committed.
+
+  **Mermaid im PDF:** Mermaid-Blöcke rendern in Editoren (VS Code, IntelliJ, GitHub/GitLab). Im PDF fallen sie auf einen Codeblock zurück — für Sequenzdiagramme gemäß dieser Regel akzeptabel.
 
 ---
 

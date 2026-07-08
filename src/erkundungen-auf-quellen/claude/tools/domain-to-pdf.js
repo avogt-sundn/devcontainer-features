@@ -7,7 +7,26 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
-const CHROME = '/ms-playwright/chromium-1208/chrome-linux/chrome';
+function findChromium() {
+  if (process.env.CHROMIUM_PATH && fs.existsSync(process.env.CHROMIUM_PATH)) {
+    return process.env.CHROMIUM_PATH;
+  }
+  const msCache = path.join(process.env.HOME || '/root', '.cache', 'ms-playwright');
+  if (fs.existsSync(msCache)) {
+    const dir = fs.readdirSync(msCache).find(d => d.startsWith('chromium-'));
+    if (dir) {
+      const bin = path.join(msCache, dir, 'chrome-linux', 'chrome');
+      if (fs.existsSync(bin)) return bin;
+    }
+  }
+  return null;
+}
+
+const CHROME = findChromium();
+if (!CHROME) {
+  console.error('Chromium nicht gefunden. Setze CHROMIUM_PATH oder: npx playwright install chromium');
+  process.exit(1);
+}
 
 const inputArg = process.argv[2];
 if (!inputArg) {

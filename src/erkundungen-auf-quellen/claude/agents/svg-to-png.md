@@ -5,13 +5,13 @@ Wandelt SVG-Dateien in PNG-Rastergrafiken um — für Confluence-Uploads, Präse
 ## Aufruf
 
 ```
-Konvertiere erkundungen/wie-sieht-ein-agentischer-arbeitsalltag-aus/grafiken/*.svg nach PNG
+Konvertiere abhandlungen/suchmaschinenwahl-partnerverzeichnis/fig-architektur.svg nach PNG
 ```
 
-oder einzeln:
+oder mehrere auf einmal:
 
 ```
-Konvertiere grafiken/posteingang.svg nach PNG mit 3-facher Auflösung
+Konvertiere alle SVGs in abhandlungen/carnet-web-facharchitektur/ nach PNG
 ```
 
 ---
@@ -19,13 +19,36 @@ Konvertiere grafiken/posteingang.svg nach PNG mit 3-facher Auflösung
 ## Was der Agent tut
 
 1. SVG-Dateien identifizieren (Shell-Glob oder einzelne Pfade).
-2. Tool aufrufen: `node .claude/tools/svg-to-png.js [--scale=N] <datei.svg> ...`
-3. PNG landet im selben Verzeichnis wie das SVG — Dateiname identisch (`.svg` → `.png`).
-4. Ausgabe: Dateiname, Pixelgröße, Skalierungsfaktor.
+2. PNG im selben Verzeichnis erzeugen — Dateiname identisch (`.svg` → `.png`).
+3. Ausgabe: Dateiname und Pixelgröße.
 
 ---
 
-## Tool-Aufruf
+## Tool-Aufruf — Primärmethode: `rsvg-convert`
+
+```bash
+rsvg-convert -o datei.png datei.svg
+```
+
+Mit fester Breite (empfohlen für Confluence, 1200 px):
+```bash
+rsvg-convert -w 1200 -o datei.png datei.svg
+```
+
+Mehrere Dateien per Shell-Glob:
+```bash
+for f in abhandlungen/carnet-web-facharchitektur/*.svg; do
+    rsvg-convert -w 1200 -o "${f%.svg}.png" "$f"
+done
+```
+
+`rsvg-convert` ist durch `librsvg2-bin` im DevContainer verfügbar — kein Chromium, kein Node.js erforderlich.
+
+---
+
+## Alternativmethode: Node.js-Tool (Playwright/Chromium)
+
+Für pixelgenaue Skalierung oder wenn `rsvg-convert` Rendering-Unterschiede zeigt:
 
 ```bash
 node .claude/tools/svg-to-png.js [--scale=N] <datei.svg> ...
@@ -33,53 +56,15 @@ node .claude/tools/svg-to-png.js [--scale=N] <datei.svg> ...
 
 **Beispiele**:
 ```bash
-# Einzelne Datei (Standardauflösung 2x)
-node .claude/tools/svg-to-png.js erkundungen/wie-sieht-ein-agentischer-arbeitsalltag-aus/grafiken/posteingang.svg
-
-# Ganzer Ordner via Shell-Glob
-node .claude/tools/svg-to-png.js erkundungen/wie-sieht-ein-agentischer-arbeitsalltag-aus/grafiken/*.svg
-
-# 3-fache Auflösung
-node .claude/tools/svg-to-png.js --scale=3 grafiken/agenten-workflow.svg
+node .claude/tools/svg-to-png.js abhandlungen/carnet-web-facharchitektur/fig-statusmodell.svg
+node .claude/tools/svg-to-png.js --scale=3 abhandlungen/suchmaschinenwahl-partnerverzeichnis/fig-architektur.svg
 ```
 
----
-
-## Voraussetzungen (durch DevContainer eingerichtet)
-
-| Was | Status |
-|---|---|
-| `libcairo2`, `libpango-1.0-0`, `libcups2`, `libatk-bridge2.0-0` u. a. | `postCreate-playwright-deps.sh` via apt |
-| `playwright-core` | `postCreate-playwright-deps.sh` via `npm install` in `.claude/tools/` |
-| Chromium | `~/.cache/ms-playwright/chromium-*/chrome-linux/chrome` — automatisch gefunden |
-
-Chromium-Pfad überschreibbar per `CHROMIUM_PATH`-Umgebungsvariable.
-
----
-
-## Ausgabe
-
-- `<stem>.png` im selben Verzeichnis wie `<stem>.svg`
-- Standard: `--scale=2` (Retina/HiDPI, 2× CSS-Pixel)
-- Pixelgröße = SVG-Viewport × Skalierungsfaktor
-
----
-
-## Schnellweg via Shell
-
-Wenn ein Projekt-eigenes Skript vorhanden ist (`scripts/svg-to-png.sh`), dieses bevorzugen:
-
-```bash
-bash scripts/svg-to-png.sh pfad/zu/datei.svg   # einzelne Datei
-bash scripts/svg-to-png.sh                      # alle SVGs im Repo
-```
-
-Das Skript nutzt `rsvg-convert` (vom Feature bereitgestellt) und erzeugt PNGs mit 1200 px Breite.
+Erfordert Chromium unter `~/.cache/ms-playwright/` oder `CHROMIUM_PATH`-Umgebungsvariable.
 
 ---
 
 ## Regeln
 
 - **[EAQ-5]** Nur die Ziel-PNG-Dateien schreiben. SVG-Dateien nicht anfassen.
-- **[EAQ-14]** Skalierungsfaktor immer nennen, wenn er vom Standard (2) abweicht.
 - **[EAQ-15]** PNG-Erstellung ist Pflicht nach jeder SVG-Erstellung oder -Änderung. PNG wird committed.
