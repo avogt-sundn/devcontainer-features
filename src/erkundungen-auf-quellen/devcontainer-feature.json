@@ -1,6 +1,6 @@
 {
   "id": "erkundungen-auf-quellen",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "name": "Erkundungen auf Quellen",
   "description": "PDF lesen/schreiben, OCR, Tabellenextraktion, SVG→PNG (rsvg-convert, cairosvg), Confluence-Markup via pandoc -t jira. Seedet .claude/ (Agents, Grafiken, Tools) und legt quelldokumente/ und erkundungen/ im Workspace an.",
   "postCreateCommand": "mkdir -p ${containerWorkspaceFolder}/quelldokumente ${containerWorkspaceFolder}/erkundungen && bash /usr/local/share/erkundungen-auf-quellen/postCreate.sh ${containerWorkspaceFolder}",
