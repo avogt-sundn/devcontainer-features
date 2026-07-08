@@ -58,3 +58,5 @@ npx playwright install chromium
 
 - `<stem>.pdf` im selben Verzeichnis wie `<stem>.md`
 - HTML-Zwischendatei: `/tmp/domain-to-pdf-tmp.html` (temporär — nicht committen)
+
+**PDF wird nicht committed.** Es ist ein Transportmedium — bei Bedarf erzeugen, weitergeben, fertig. `*.pdf` gehört in `.gitignore` oder wird manuell ignoriert.
