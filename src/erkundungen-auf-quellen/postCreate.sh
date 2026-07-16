@@ -57,3 +57,9 @@ seed "$CLAUDE_SHARE/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
 # Projekt-eigene Dateien — einmalig anlegen, bei Versions-Abweichung warnen
 seed "$SHARE/erkundungen-domain.md" "$WORKSPACE/erkundungen/DOMAIN.md"
+
+# Workspace-Skripte — einmalig anlegen
+mkdir -p "$WORKSPACE/scripts"
+for f in "$SHARE/scripts/"*; do
+    seed "$f" "$WORKSPACE/scripts/$(basename "$f")"
+done
